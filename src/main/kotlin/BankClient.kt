@@ -16,14 +16,14 @@ class BankClient {
         val timeStart = Date().time
         var exit = false
 
-        while (!exit) {
+        while (!exit) { //првоеряем на условие окончания ожидания
             if (socket.isConnected) {
                 if (receiver.available() > 0) { // выходим из цикла, если сервер ответил
                     result = BufferedReader(receiver.reader()).readLine()
                     exit = true
                 }
             }
-            if (Date().time - timeStart > 10000) { // выходим из цикла, если сервер долго не отвечал
+            if (Date().time - timeStart > 20000) { // выходим из цикла, если сервер долго не отвечал
                 result = "Error: timeout for connect or connection lost"
                 exit = true
             }
